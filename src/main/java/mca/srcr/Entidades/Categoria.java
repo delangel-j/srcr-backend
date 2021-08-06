@@ -39,8 +39,8 @@ public class Categoria implements Serializable {
     private String nombre;
     @Column(name="url")
     private String url;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "categoria")
-    private Set<Preferencia> preferenciaSet;
+	//@OneToMany(cascade = CascadeType.ALL, mappedBy = "categoria")
+    //private Set<Preferencia> preferenciaSet;
 	@JsonIgnore
     @OneToMany(mappedBy = "categoria")
     private Set<Platillo> platilloSet;
@@ -73,13 +73,13 @@ public class Categoria implements Serializable {
         this.nombre = nombre;
     }
 
-    public Set<Preferencia> getPreferenciaSet() {
+    /*public Set<Preferencia> getPreferenciaSet() {
         return preferenciaSet;
     }
 
     public void setPreferenciaSet(Set<Preferencia> preferenciaSet) {
         this.preferenciaSet = preferenciaSet;
-    }
+    }*/
 
     public Set<Platillo> getPlatilloSet() {
         return platilloSet;

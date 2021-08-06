@@ -7,5 +7,7 @@ import mca.srcr.Entidades.Cliente;
 public interface ClienteRepositorio extends JpaRepository<Cliente, String> {
 
 	Cliente findByCorreoAndContrasena(String correo, String contrasena);
+	Cliente findByCorreo(String correo);
+	
 
 }

@@ -27,6 +27,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import mca.srcr.Entidades.Platillo;
 import mca.srcr.Repositorios.PlatilloRepositorio;
+import mca.srcr.Servicios.PlatilloService;
 
 
 
@@ -38,6 +39,9 @@ public class PlatilloControlador {
 
     @Autowired
     PlatilloRepositorio repoPlatillo;
+    
+    @Autowired
+    PlatilloService platilloService;
 
     @GetMapping("/platillos")
     public List<Platillo> getPlatillos() {
@@ -45,12 +49,12 @@ public class PlatilloControlador {
     }
     
 
-    @GetMapping(value = "/platillos", params = {"id_restaurante"})
-    public List<Platillo> getPlatilloPorId(@RequestParam(value = "id_restaurante") int id) {
+    @GetMapping(value = "/recomendados", params = {"id_restaurante","correo","index"})
+    public List<Platillo> getPlatilloPorId(@RequestParam(value = "id_restaurante") int id_restaurante,@RequestParam(value = "correo") String correo,int index) {
        //Aqui de debe cambiar el repositorio de platillo por un
     	//servicio para comparar las calorias del usuario 
     	//y las calorias del platillo y mostrar solo las requeridas
-        return repoPlatillo.getPlatilloByIdRestaurante(id);
+        return platilloService.getPlatillosRecomendados(id_restaurante,correo,index);
     }
 
 
