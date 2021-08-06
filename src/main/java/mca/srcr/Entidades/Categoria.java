@@ -19,6 +19,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  *
  * @author Jesus
@@ -35,8 +37,11 @@ public class Categoria implements Serializable {
     @Basic(optional = false)
     @Column(name = "nombre")
     private String nombre;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoria")
+    @Column(name="url")
+    private String url;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "categoria")
     private Set<Preferencia> preferenciaSet;
+	@JsonIgnore
     @OneToMany(mappedBy = "categoria")
     private Set<Platillo> platilloSet;
 
@@ -90,6 +95,14 @@ public class Categoria implements Serializable {
         hash += (idCategoria != null ? idCategoria.hashCode() : 0);
         return hash;
     }
+    
+    public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
 
     @Override
     public boolean equals(Object object) {

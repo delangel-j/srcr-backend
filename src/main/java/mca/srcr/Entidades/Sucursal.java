@@ -42,10 +42,10 @@ public class Sucursal implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
     @Column(name = "longitud")
-    private BigDecimal longitud;
+    private double longitud;
     @Basic(optional = false)
     @Column(name = "latitud")
-    private BigDecimal latitud;
+    private double latitud;
     @JoinColumn(name = "id_restaurante", referencedColumnName = "id_restaurante")
     @ManyToOne(optional = false)
     private Restaurante restaurante;
@@ -57,7 +57,7 @@ public class Sucursal implements Serializable {
         this.idSucursal = idSucursal;
     }
 
-    public Sucursal(Integer idSucursal, String telefono, String estado, BigDecimal longitud, BigDecimal latitud) {
+    public Sucursal(Integer idSucursal, String telefono, String estado, double longitud, double latitud) {
         this.idSucursal = idSucursal;
         this.telefono = telefono;
         this.estado = estado;
@@ -89,19 +89,19 @@ public class Sucursal implements Serializable {
         this.estado = estado;
     }
 
-    public BigDecimal getLongitud() {
+    public double getLongitud() {
         return longitud;
     }
 
-    public void setLongitud(BigDecimal longitud) {
+    public void setLongitud(double longitud) {
         this.longitud = longitud;
     }
 
-    public BigDecimal getLatitud() {
+    public double getLatitud() {
         return latitud;
     }
 
-    public void setLatitud(BigDecimal latitud) {
+    public void setLatitud(double latitud) {
         this.latitud = latitud;
     }
 
@@ -135,7 +135,7 @@ public class Sucursal implements Serializable {
 
     @Override
     public String toString() {
-        return "mca.srcr.Entidades.Sucursal[ idSucursal=" + idSucursal + " ]";
+        return idSucursal +", "+ latitud +", " + longitud;
     }
     
 }

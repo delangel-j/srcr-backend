@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import mca.srcr.Entidades.Cliente;
+import mca.srcr.Entidades.Sucursal;
 import mca.srcr.Repositorios.ClienteRepositorio;
 
 
@@ -38,6 +39,7 @@ public class ClienteControlador {
 
     @Autowired
     ClienteRepositorio repoClientes;
+
 
 
 
@@ -91,6 +93,13 @@ public class ClienteControlador {
                     .build();
         }
     }
+    
+    @GetMapping(value = "/login" , params = {"correo", "contrasena"})
+    public Cliente getClientePorCorreoYContrasena(@RequestParam( value = "correo") String cadena
+    									,@RequestParam(value = "contrasena") String cadena2 ) {
+        return repoClientes.findByCorreoAndContrasena(cadena,cadena2);
+    }
+    
 
     @DeleteMapping("/clientes/eliminar/{correo}")
     public ResponseEntity eliminarCliente(@PathVariable("cliente") String correo) {

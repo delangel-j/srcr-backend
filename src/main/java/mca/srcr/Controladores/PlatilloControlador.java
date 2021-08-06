@@ -45,13 +45,12 @@ public class PlatilloControlador {
     }
     
 
-    @GetMapping("/platillos/{id}")
-    public ResponseEntity<Platillo> getPlatilloPorId(@PathVariable("id") Integer id) {
-        Optional<Platillo> platilloId = repoPlatillo.findById(id);
-        if (!platilloId.isPresent()) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(platilloId.get());
+    @GetMapping(value = "/platillos", params = {"id_restaurante"})
+    public List<Platillo> getPlatilloPorId(@RequestParam(value = "id_restaurante") int id) {
+       //Aqui de debe cambiar el repositorio de platillo por un
+    	//servicio para comparar las calorias del usuario 
+    	//y las calorias del platillo y mostrar solo las requeridas
+        return repoPlatillo.getPlatilloByIdRestaurante(id);
     }
 
 

@@ -14,7 +14,7 @@
 	<name>Srcr-Backend</name>
 	<description>Backend de la aplicación Sistema de Recomendación calórica para restaurantes</description>
 	<properties>
-		<java.version>11</java.version>
+		
 	</properties>
 	<dependencies>
 		<dependency>
@@ -46,6 +46,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
+       
 	</dependencies>
 
 	<build>

@@ -27,6 +27,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import mca.srcr.Entidades.Sucursal;
 import mca.srcr.Repositorios.SucursalRepositorio;
+import mca.srcr.Servicios.SucursalService;
 
 @RestController
 @RequestMapping(path = "/api/srcr")
@@ -36,10 +37,14 @@ public class SucursalControlador {
 
     @Autowired
     SucursalRepositorio repoSucursal;
+    
+    @Autowired
+    SucursalService sucursalService;
 
-    @GetMapping("/sucursales")
-    public List<Sucursal> getSucursales() {
-        return repoSucursal.findAll();
+    @GetMapping(value = "/sucursales" , params = {"latitud", "longitud"})
+    public List<Sucursal> getSucursales(@RequestParam( value = "latitud") double cadena
+    									,@RequestParam(value = "longitud") double cadena2 ) {
+        return sucursalService.getSucursalesPorUbicacion(cadena,cadena2);
     }
 
 

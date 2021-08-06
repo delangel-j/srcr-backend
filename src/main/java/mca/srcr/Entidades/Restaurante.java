@@ -22,6 +22,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  *
  * @author Jesus
@@ -56,8 +58,10 @@ public class Restaurante implements Serializable {
     @Basic(optional = false)
     @Column(name = "img_url")
     private String imgUrl;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurante")
     private Set<Sucursal> sucursalSet;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurante")
     private Set<Platillo> platilloSet;
 
