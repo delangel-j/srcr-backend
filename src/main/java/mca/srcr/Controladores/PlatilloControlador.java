@@ -49,12 +49,12 @@ public class PlatilloControlador {
     }
     
 
-    @GetMapping(value = "/recomendados", params = {"id_restaurante","correo","index"})
-    public List<Platillo> getPlatilloPorId(@RequestParam(value = "id_restaurante") int id_restaurante,@RequestParam(value = "correo") String correo,int index) {
+    @GetMapping(value = "/recomendados", params = {"id_restaurante","correo"})
+    public List<Platillo> getPlatilloPorId(@RequestParam(value = "id_restaurante") int id_restaurante,@RequestParam(value = "correo") String correo) {
        //Aqui de debe cambiar el repositorio de platillo por un
     	//servicio para comparar las calorias del usuario 
     	//y las calorias del platillo y mostrar solo las requeridas
-        return platilloService.getPlatillosRecomendados(id_restaurante,correo,index);
+        return platilloService.getPlatillosRecomendados(id_restaurante,correo);
     }
 
 

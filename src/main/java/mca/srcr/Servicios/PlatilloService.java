@@ -1,6 +1,8 @@
 package mca.srcr.Servicios;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +25,7 @@ public class PlatilloService {
 	@Autowired
 	PreferenciaRepositorio prefRepo;
 	
-	public List<Platillo> getPlatillosRecomendados(int id_rest,String id_usuario, int index_caloria){
+	public List<Platillo> getPlatillosRecomendados(int id_rest,String id_usuario){
 		System.out.println("Entrando al servicio... ");
 		
 		List<Platillo> platillosRecomendados = new ArrayList<Platillo>();
@@ -39,6 +41,26 @@ public class PlatilloService {
 		preferencias.addAll(prefRepo.findAll());
 		//Total de calorias
 		int caloriasTotales = 0;	
+		int index_caloria = 0;
+
+		
+		Calendar now = Calendar.getInstance();
+		int hora = now.get(Calendar.HOUR_OF_DAY);
+		
+		if(hora >11 && hora < 19) {
+			
+			index_caloria = 1;
+		}
+		
+		if(hora >=19) {
+			
+			index_caloria = 2;
+		}
+		
+		if(hora <=11) {
+			
+			index_caloria = 0;
+		}
 		
 		
 		System.out.println("Clientes en 0: "+clientes.get(0).getCorreo());
@@ -79,6 +101,10 @@ public class PlatilloService {
 						System.out.println("Un platillo coincide");
 						System.out.println(plat.getIdPlatillo());
 						System.out.println(plat.getNombre());
+						plat.getRestaurante().setImgUrl(null);
+						plat.getRestaurante().setContrasenia(null);
+						plat.getRestaurante().setUsuario(null);
+						plat.getCategoria().setUrl(null);
 						platillosRecomendados.add(plat);
 					}
 					
