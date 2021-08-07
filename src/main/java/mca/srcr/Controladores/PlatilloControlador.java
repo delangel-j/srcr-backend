@@ -43,9 +43,9 @@ public class PlatilloControlador {
     @Autowired
     PlatilloService platilloService;
 
-    @GetMapping("/platillos")
-    public List<Platillo> getPlatillos() {
-        return repoPlatillo.findAll();
+    @GetMapping(value = "/platillos" , params = {"id_restaurante"})
+    public List<Platillo> getPlatillos(@RequestParam(value = "id_restaurante") int id_restaurante) {
+        return repoPlatillo.getPlatilloByIdRestaurante(id_restaurante);
     }
     
 

@@ -17,6 +17,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  *
  * @author Jesus
@@ -45,8 +47,10 @@ public class Cliente implements Serializable {
     @Basic(optional = false)
     @Column(name = "contrasena")
     private String contrasena;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
     private Set<Favorito> favoritoSet;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
     private Set<Preferencia> preferenciaSet;
 
